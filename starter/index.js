@@ -2,6 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown"); 
+
+  
 // Define questions for user input
 const questions = [
     {
@@ -13,6 +15,11 @@ const questions = [
     type: "input",
     name: "projectTitle",
     message: "Enter the project title:",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "Enter your email address:",
   },
   {
     type: "input",
@@ -53,22 +60,30 @@ const questions = [
         "Unlicense",
     ],
   },
-  // ... questions for GitHub username and email
+  
 ];
 
-function
- 
-init() {
-  inquirer.prompt(questions).then((answers) => {
-    const readmeContent = generateMarkdown(answers);
-    fs.writeFile("README.md", readmeContent, (err) => {
-      if (err) {
-        console.error("Error writing README file:", err);
-      } else {
-        console.log("README file generated successfully!");
+async function init() {
+    try {
+      const answers = await inquirer.prompt(questions);
+  
+      // Preview feature
+      const preview = await inquirer.prompt({
+        type: "confirm",
+        name: "preview",
+        message: "Preview README before saving?",
+      });
+      if (preview) {
+        console.log(generateMarkdown(answers));
       }
-    });
-  });
-}
-
-init();
+  
+      // Generate and save README
+      const readmeContent = generateMarkdown(answers);
+      await fs.promises.writeFile("README.md", readmeContent);
+      console.log("README file generated successfully!");
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  }
+  
+  init();
