@@ -14,7 +14,21 @@ ${answers.description}
 - [Tests](#tests)
 - [Questions](#questions)
 
-// ... other sections based on user input
+**Installation**
+
+${answers.installation}
+
+**Usage**
+
+${answers.usage}
+
+**Contributing**
+
+${answers.contributing}
+
+**Tests**
+
+${answers.tests}
 
 **License**
 
@@ -22,7 +36,10 @@ This project is licensed under the ${answers.license} License.
 
 **Questions**
 
-For any questions, please contact ${answers.githubUsername} on GitHub or email ${answers.email}.`;
+For any questions, please contact ${answers.githubUsername} on GitHub or email ${answers.email}.
+
+Made with ❤️ and JS by ${answers.name}`;
+
 
   return readmeContent;
 }

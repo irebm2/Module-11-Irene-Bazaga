@@ -1,25 +1,56 @@
 const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
-const generateMarkdown = require("./utils/generateMarkdown"); // Assuming this function is defined in a separate file
-
+const generateMarkdown = require("./utils/generateMarkdown"); 
 // Define questions for user input
 const questions = [
+    {
+        type: "input",
+        name: "name",
+        message: "Enter your name:",
+      },
   {
     type: "input",
     name: "projectTitle",
     message: "Enter the project title:",
   },
-  // ... other questions for description, installation, usage, etc.
+  {
+    type: "input",
+    name: "description",
+    message: "Enter a brief description of the project:",
+  },
+  {
+    type: "input",
+    name: "installation",
+    message: "Provide detailed installation instructions:",
+  },
+  {
+    type: "input",
+    name: "usage",
+    message: "Explain how to use the project:",
+  },
+  {
+    type: "input",
+    name: "contributing",
+    message: "Provide guidelines for contributing to the project:",
+  },
+  {
+    type: "input",
+    name: "tests",
+    message: "Describe the testing process:",
+  },
   {
     type: "list",
     name: "license",
     message: "Choose a license:",
     choices: [
-      "MIT",
-      "Apache-2.0",
-      "GPL-3.0",
-      // ... other license options
+        "MIT",
+        "Apache-2.0",
+        "GPL-3.0",
+        "LGPL-3.0",
+        "Mozilla Public License 2.0",
+        "BSD-3-Clause",
+        "Unlicense",
     ],
   },
   // ... questions for GitHub username and email
